@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalClean Export | Productos de Aseo e Higiene al Mundo</title>
+    <style>
+        :root {
+            --primary: #0284c7;
+            --secondary: #0369a1;
+            --accent: #38bdf8;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        /* Main Content Views */
+        .view {
+            display: none;
+            padding-top: 100px;
+            min-height: calc(100vh - 150px);
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1584824486509-112e4181ff6b?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #e2e8f0;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+        }
+
+        /* Container Standard */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-body h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .card-body p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Tables & Logistics Specs */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .specs-table th, .specs-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .specs-table th {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Forms */
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="switchView('home')">Global<span>Clean</span></a>
+            <nav>
+                <ul>
+                    <li><a onclick="switchView('home')" id="nav-home" class="active">Inicio</a></li>
+                    <li><a onclick="switchView('catalog')" id="nav-catalog">Catálogo</a></li>
+                    <li><a onclick="switchView('logistics')" id="nav-logistics">Exportaciones & Logística</a></li>
+                    <li><a onclick="switchView('contact')" id="nav-contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="view active">
+        <div class="hero">
+            <h1>Liderando la Higiene a Escala Global</h1>
+            <p>Exportadores certificados de productos de aseo institucional, industrial y doméstico con altos estándares de calidad internacional.</p>
+            <button class="btn" onclick="switchView('catalog')">Ver Catálogo de Productos</button>
+        </div>
+        <div class="container">
+            <h2 class="section-title">¿Por qué elegirnos para sus importaciones?</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Certificación Internacional</h3>
+                        <p>Nuestros productos cumplen con normativas sanitarias y ambientales globales (FDA, ISO 9001).</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Logística Global</h3>
+                        <p>Envíos seguros en contenedores marítimos y aéreos optimizados para carga masiva e industrial.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Volúmenes a la Medida</h3>
+                        <p>Capacidad de respuesta para distribuidores mayoristas, cadenas de retail y corporativos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="catalog" class="view">
+        <div class="container">
+            <h2 class="section-title">Catálogo de Productos de Aseo</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&fit=crop&q=80&w=400" alt="Detergente Industrial">
+                    <div class="card-body">
+                        <h3>Detergente Líquido Industrial</h3>
+                        <p>Fórmula concentrada de alto rendimiento para lavanderías comerciales y textiles a gran escala.</p>
+                        <span style="font-weight:bold; color:var(--primary);">Presentación: Bidón 20L / 200L</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&q=80&w=400" alt="Desinfectante Multiusos">
+                    <div class="card-body">
+                        <h3>Desinfectante Amonio Cuaternario</h3>
+                        <p>Elimina el 99.9% de bacterias y virus en superficies hospitalarias, oficinas y espacios públicos.</p>
+                        <span style="font-weight:bold; color:var(--primary);">Presentación: Galón 4L / Tambor</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&q=80&w=400" alt="Jabón Antibacterial">
+                    <div class="card-body">
+                        <h3>Jabón Líquido Antibacterial</h3>
+                        <p>Con agentes humectantes para el cuidado de la piel en dispensadores institucionales.</p>
+                        <span style="font-weight:bold; color:var(--primary);">Presentación: Contenedor 1000L IBC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="logistics" class="view">
+        <div class="container">
+            <h2 class="section-title">Capacidad Logística y Procesos de Exportación</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: var(--gray);">
+                Gestionamos toda la cadena de suministro internacional asegurando tiempos de entrega óptimos bajo los estándares de comercio internacional (Incoterms 2020: FOB, CIF, EXW).
+            </p>
+
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Tipo de Contenedor</th>
+                        <th>Capacidad Máxima Recomendada</th>
+                        <th>Uso Frecuente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Dry Van 20'</strong></td>
+                        <td>Aprox. 21,800 kg / 33 CBM</td>
+                        <td>Carga seca paletizada en cajas de cartón reforzado.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dry Van 40' HC</strong></td>
+                        <td>Aprox. 26,500 kg / 76 CBM</td>
+                        <td>Optimización de costos para pedidos masivos de distribuidores.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contenedor IBC / Granel</strong></td>
+                        <td>Tanques flexibles hasta 24,000 L</td>
+                        <td>Exportación a granel de líquidos limpiadores y detergentes.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="contact" class="view">
+        <div class="container">
+            <h2 class="section-title">Cotizaciones y Alianzas Internacionales</h2>
+            <div class="contact-form">
+                <form action="https://formsubmit.co/edwinmunive@hotmail.com" method="POST">
+                    
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <div class="form-group">
+                        <label for="name">Nombre / Razón Social</label>
+                        <input type="text" id="name" name="Nombre" required placeholder="Ej. Importadora Global S.A.">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico Corporativo</label>
+                        <input type="email" id="email" name="Email" required placeholder="contacto@importadora.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="country">País de Destino</label>
+                        <input type="text" id="country" name="Pais" required placeholder="Ej. México, España, Chile...">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Detalles del Pedido / Requerimientos</label>
+                        <textarea id="message" name="Mensaje" rows="4" required placeholder="Indique productos, volúmenes estimados e Incoterm deseado..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Solicitar Cotización Formal</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 GlobalClean Export Corp. Todos los derechos reservados. | Sistema de Gestión de Comercio Exterior</p>
+    </footer>
+
+    <script>
+        function switchView(viewId) {
+            // Ocultar todas las vistas
+            const views = document.querySelectorAll('.view');
+            views.forEach(v => v.classList.remove('active'));
+
+            // Quitar clase active de todos los links de navegación
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(l => l.classList.remove('active'));
+
+            // Mostrar la vista seleccionada
+            document.getElementById(viewId).classList.add('active');
+
+            // Activar el link correspondiente
+            document.getElementById('nav-' + viewId).classList.add('active');
+
+            // Subir al inicio de la página suavemente
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
